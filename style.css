@@ -1,0 +1,158 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+ul,
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.gameboard {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+/*size of mark should be 90px*/
+.field {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.field.x,
+.field.circle {
+    cursor: not-allowed;
+}
+
+.field:first-child,
+.field:nth-child(2),
+.field:nth-child(3) {
+    border-top: none;
+}
+
+.field:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.field:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.field:last-child,
+.field:nth-child(8),
+.field:nth-child(7) {
+    border-bottom: none;
+}
+
+.field.x::before,
+.field.x::after,
+.gameboard.x .field:not(.x):not(.circle):hover::before,
+.gameboard.x .field:not(.x):not(.circle):hover::after {
+    margin-left: 40px;
+    content: '';
+    position: absolute;
+    width: calc(90px * 0.15); /*90px is mark size*/
+    height: 90px;
+    background-color: black;
+}
+
+.gameboard.x .field:not(.x):not(.circle):hover::before,
+.gameboard.x .field:not(.x):not(.circle):hover::after {
+    background-color: lightgrey;
+}
+
+.field.x::before,
+.gameboard.x .field:hover::before {
+    transform: rotate(45deg);
+}
+
+.field.x::after,
+.gameboard.x .field:hover::after {
+    transform: rotate(-45deg);
+}
+
+.field.circle::before,
+.field.circle::after,
+.gameboard.circle .field:not(.x):not(.circle):hover::before,
+.gameboard.circle .field:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    background-color: black;
+}
+
+.gameboard.circle .field:not(.x):not(.circle):hover::before {
+    background-color: lightgray;
+}
+
+.field.circle::before,
+.gameboard.circle .field:not(.x):not(.circle):hover::before {
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.field.circle::after,
+.gameboard.circle .field:not(.x):not(.circle):hover::after {
+    position: absolute;
+    top: 18%;
+    left: 18%;
+    width: calc(90px * 0.7);
+    height: calc(90px * 0.7);
+    background-color: white;
+    border-radius: 50%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.restart-game {
+    background-color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 22px;
+    border-radius: 15px;
+}
+
+.restart-game:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
